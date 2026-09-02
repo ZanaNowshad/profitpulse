@@ -1,0 +1,12 @@
+# Loose local debug artifacts (screenshots / exploratory scripts) — not part of the product.
+_*.png
+_*.py
+deployed_full.png
+deployed_live.png
+live_verify.png
+_final_paypal.png
+test_paypal_*.py
+
+# OS / editor noise
+Thumbs.db
+.DS_Store

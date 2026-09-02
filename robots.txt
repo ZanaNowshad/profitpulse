@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://zananowshad.github.io/profitpulse/sitemap.xml

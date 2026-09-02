@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SaaS Pricing Calculator — Target Margin &amp; Unit Price Tool | ProfitPulse</title>
+<meta name="description" content="Free SaaS pricing calculator. Set your cost and target margin to compute the exact unit price, subtotal, discount and realized margin. 100% client-side, no sign-up." />
+<meta name="keywords" content="SaaS pricing calculator, pricing calculator, target margin pricing, unit price calculator, SaaS pricing" />
+<link rel="canonical" href="https://zananowshad.github.io/profitpulse/saas-pricing-calculator.html" />
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="ProfitPulse" />
+<meta property="og:title" content="SaaS Pricing Calculator — Target Margin &amp; Unit Price Tool | ProfitPulse" />
+<meta property="og:description" content="Free SaaS pricing calculator. Set your cost and target margin to compute the exact unit price, subtotal, discount and realized margin. 100% client-side, no sign-up." />
+<meta property="og:url" content="https://zananowshad.github.io/profitpulse/saas-pricing-calculator.html" />
+<meta property="og:image" content="https://zananowshad.github.io/profitpulse/og.png" />
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="SaaS Pricing Calculator — Target Margin &amp; Unit Price Tool | ProfitPulse" />
+<meta name="twitter:description" content="Free SaaS pricing calculator. Set your cost and target margin to compute the exact unit price, subtotal, discount and realized margin. 100% client-side, no sign-up." />
+<meta name="twitter:image" content="https://zananowshad.github.io/profitpulse/og.png" />
+<link rel="stylesheet" href="style.css" />
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is a SaaS pricing calculator?", "acceptedAnswer": {"@type": "Answer", "text": "A SaaS pricing calculator computes the unit price you should charge to hit a target gross margin, from your cost and desired margin, and shows totals after discount and tax."}}, {"@type": "Question", "name": "How do you calculate target margin price?", "acceptedAnswer": {"@type": "Answer", "text": "Divide unit cost by (1 minus the target margin). For example $20 cost at 70% margin = $20 / 0.30 = $66.67 unit price."}}, {"@type": "Question", "name": "What is a good gross margin for SaaS?", "acceptedAnswer": {"@type": "Answer", "text": "Software gross margins are typically 70–90%. If you are below 70%, review your cost structure or pricing before scaling acquisition."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "ProfitPulse", "applicationCategory": "BusinessApplication", "operatingSystem": "Any (browser)", "browserRequirements": "Requires JavaScript", "description": "Free SaaS pricing calculator: compute target margin unit price, discount, tax and realized margin.", "url": "https://zananowshad.github.io/profitpulse/saas-pricing-calculator.html", "offers": {"@type": "AggregateOffer", "lowPrice": "0", "highPrice": "29", "priceCurrency": "USD", "offerCount": "3"}}</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">⚡ ProfitPulse</div>
+  <nav>
+    <a href="index.html#calc" class="btn small">Open Calculator</a>
+    <a href="index.html#pricing" class="btn small ghost">Pricing</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>SaaS Pricing Calculator</h1>
+  <p class="sub">Enter your unit cost and target margin — ProfitPulse computes the price you should charge before and after discount &amp; tax, so every sale hits your margin goal.</p>
+  <div class="cta">
+    <a href="#calc" class="btn">Run the calculator →</a>
+    <a href="index.html#pricing" class="btn ghost">See Pro plans</a>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>Learn: what your numbers mean</h2>
+  <p>New to unit economics? Read our free <a href="unit-economics-calculator.html">unit economics guide</a> for SaaS founders before you run the numbers.</p>
+</section>
+
+<section id="calc" class="panel">
+  <h2>Unit Economics Calculator</h2>
+  <p class="muted">Everything runs locally in your browser. No data leaves your device.</p>
+  <div class="grid">
+    <form id="ue-form" class="form">
+      <label>Price / unit ($)
+        <input type="number" id="price" min="0" step="0.01" value="49" />
+      </label>
+      <label>Variable cost / unit ($)
+        <input type="number" id="varcost" min="0" step="0.01" value="10" />
+      </label>
+      <label>Acquisition cost (CAC) ($)
+        <input type="number" id="cac" min="0" step="0.01" value="30" />
+      </label>
+      <label>Monthly fixed cost ($)
+        <input type="number" id="fixed" min="0" step="0.01" value="1200" />
+      </label>
+      <label>Active customers
+        <input type="number" id="customers" min="0" step="1" value="100" />
+      </label>
+      <label>Monthly churn rate (%)
+        <input type="number" id="churn" min="0" max="100" step="0.1" value="5" />
+      </label>
+      <button type="submit" class="btn">Compute</button>
+    </form>
+    <div id="ue-out" class="results" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="panel accent">
+  <h2>Target-Margin Pricing</h2>
+  <div class="grid">
+    <form id="pq-form" class="form">
+      <label>Unit cost ($)
+        <input type="number" id="pcost" min="0" step="0.01" value="20" />
+      </label>
+      <label>Target margin (%)
+        <input type="number" id="pmargin" min="0" max="99" step="0.1" value="70" />
+      </label>
+      <label>Quantity
+        <input type="number" id="pqty" min="1" step="1" value="1" />
+      </label>
+      <label>Discount (%)
+        <input type="number" id="pdiscount" min="0" max="100" step="0.1" value="0" />
+      </label>
+      <label>Tax (%)
+        <input type="number" id="ptax" min="0" step="0.1" value="0" />
+      </label>
+      <button type="submit" class="btn">Price it</button>
+    </form>
+    <div id="pq-out" class="results" aria-live="polite"></div>
+  </div>
+</section>
+
+
+<section class="panel">
+  <h2>How to price a SaaS product</h2>
+  <p>Pricing is the highest-leverage decision in a SaaS business. A small change in price lands straight on
+  margin, but it also changes how many customers buy. The <strong>target-margin calculator</strong> above
+  finds the price that hits a specific gross-margin goal based on your cost.</p>
+  <h3>Target-margin pricing formula</h3>
+  <p><code>Unit price = Unit cost ÷ (1 − target margin)</code>. For a $20 cost and a 70% margin, the price is
+  <code>$20 ÷ 0.30 = $66.67</code>. The calculator also applies discount and tax, and reports the
+  <strong>realized margin</strong> so you can see what you actually keep after a discount.</p>
+  <h3>Value-based vs. cost-plus</h3>
+  <p>Cost-plus pricing keeps you safe but can leave money on the table. Value-based pricing — anchoring on the
+  outcome your product creates — often supports a higher price. Use the calculator to find your floor, then
+  validate the ceiling with customer research.</p>
+  <h3>Three pricing patterns that work for SaaS</h3>
+  <ul>
+    <li><strong>Freemium</strong> — free tool acquires users, paid tier converts power users (ProfitPulse's model).</li>
+    <li><strong>Tiered by usage</strong> — price scales with seats, volume or features.</li>
+    <li><strong>Annual commitment</strong> — discount annual plans to boost cash flow and reduce churn.</li>
+  </ul>
+  <div class="cta"><a href="#pq-form" class="btn">Price your product →</a></div>
+</section>
+
+<section class="panel accent">
+  <h2>Compare scenarios &amp; export</h2>
+  <p>This free calculator covers the essentials. The <strong>Pro ($9/mo)</strong> plan adds side-by-side
+  scenario comparison, CSV &amp; PDF export, and saved models. The <strong>Team ($29/mo)</strong> plan adds
+  unlimited seats and priority support.</p>
+  <div class="cta"><a href="index.html#pricing" class="btn">Upgrade to Pro / Team →</a></div>
+</section>
+
+<footer>
+  <p>ProfitPulse · a micro-tool by the WinAgent Income Orchestrator · ver. 1.1</p>
+</footer>
+<script src="app.js"></script>
+<script src="dom.js"></script>
+
+</body>
+</html>
