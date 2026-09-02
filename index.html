@@ -126,7 +126,8 @@
         <li>Export to CSV &amp; PDF</li>
         <li>Saved models &amp; templates</li>
       </ul>
-      <button class="btn" onclick="scrollToLead('Pro')">Upgrade</button>
+      <div id="paypal-pro-button" class="paypal-slot"></div>
+      <p class="muted paypal-mode-note" data-tier="pro"></p>
     </div>
     <div class="card">
       <h3>Team</h3>
@@ -136,24 +137,18 @@
         <li>Unlimited seats</li>
         <li>Priority support</li>
       </ul>
-      <button class="btn ghost" onclick="scrollToLead('Team')">Contact</button>
+      <div id="paypal-team-button" class="paypal-slot"></div>
+      <p class="muted paypal-mode-note" data-tier="team"></p>
     </div>
   </div>
 
   <div class="panel accent" id="upgrade-box">
-    <h3>Upgrade to Pro / Team — your account setup</h3>
-    <p class="muted">Tell us where to send your activation link. We personally onboard every Pro and Team workspace.</p>
+    <h3>Upgrade to Pro / Team</h3>
+    <p class="muted">Subscribe securely with PayPal — your funds go straight to our PayPal business account, and your Pro/Team features unlock after approval. (Optional) enter the email you want on the subscription.</p>
     <div class="form">
-      <label>Your name
-        <input type="text" id="lead-name" placeholder="Jane Founder" />
-      </label>
-      <label>Work email
+      <label>Subscription email (optional)
         <input type="email" id="lead-email" placeholder="you@company.com" />
       </label>
-      <div class="row">
-        <button type="button" class="btn" onclick="captureLead('Pro')">Request Pro ($9/mo)</button>
-        <button type="button" class="btn ghost" onclick="captureLead('Team')">Request Team ($29/mo)</button>
-      </div>
       <p class="muted" id="lead-msg" style="display:none; color:#2ecc71;"></p>
     </div>
   </div>
@@ -162,10 +157,28 @@
 <footer>
   <p>ProfitPulse · a micro-tool by the WinAgent Income Orchestrator · ver. 1.0</p>
 </footer>
-<script>
-  function scrollToLead(tier) { var el = document.getElementById('upgrade-box'); if (el) el.scrollIntoView({ behavior:'smooth' }); }
-</script>
 <script src="app.js"></script>
 <script src="dom.js"></script>
+<script src="paypal-config.js"></script>
+<script src="paypal-subscribe.js"></script>
+<script>
+  (function () {
+    function modeNote() {
+      var mode = (window.ppPayPal && window.ppPayPal.config && window.ppPayPal.config.mode) || 'sandbox';
+      var notes = document.querySelectorAll('.paypal-mode-note');
+      for (var i = 0; i < notes.length; i++) {
+        notes[i].textContent = mode === 'live'
+          ? 'Billed via PayPal (live). Subscription managed by PayPal.'
+          : 'Demo mode: PayPal sandbox checkout — no real charge.';
+      }
+    }
+    window.ppOnRendered = function (tier) { modeNote(); };
+    window.ppOnError = function () { modeNote(); };
+    document.addEventListener('DOMContentLoaded', function () {
+      window.ppSubscribe.renderAll(['pro', 'team']);
+      modeNote();
+    });
+  })();
+</script>
 </body>
 </html>

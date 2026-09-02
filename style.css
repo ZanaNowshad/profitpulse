@@ -41,3 +41,7 @@ a { color:var(--brand); text-decoration:none; }
 .card ul li { padding:6px 0; border-bottom:1px solid var(--line); }
 .card .btn { margin-top:14px; width:100%; }
 footer { text-align:center; padding:28px; color:var(--muted); border-top:1px solid var(--line); margin-top:48px; }
+.paypal-slot { max-width:300px; margin:16px auto 0; }
+.paypal-slot iframe { width:100%; }
+.paypal-mode-note { font-size:.8rem; margin-top:10px; color:var(--muted); }
+.card .paypal-slot .btn { margin-top:0; }

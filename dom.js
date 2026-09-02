@@ -62,29 +62,18 @@
     renderPQ(r);
   }
 
-  // ---- Lead capture (goes to a real, verifiable endpoint when deployed) ----
-  // On GitHub Pages we have no server, so we build a mailto invite that the
-  // operator can swap for a form-spam-safe endpoint (e.g. Formspree/Netlify).
+  // ---- Free plan CTA (no email needed; the calculator is free) ----
   window.captureLead = function (tier) {
-    var email = ($('lead-email') ? $('lead-email').value : '');
-    var name = ($('lead-name') ? $('lead-name').value : '');
-    if (!email || email.indexOf('@') < 1) {
-      alert('Please enter a valid email to get the ' + (tier || 'Pro') + ' setup.');
-      return false;
+    if (tier === 'Free') {
+      var calc = $('calc') || $('ue-form');
+      if (calc && calc.scrollIntoView) calc.scrollIntoView({ behavior: 'smooth' });
+      var msg = $('lead-msg');
+      if (msg) { msg.textContent = 'Free plan is live — the calculator is fully unlocked. No sign-up needed.'; msg.style.display = 'block'; }
+      return true;
     }
-    var body = encodeURIComponent(
-      'I want to upgrade to ProfitPulse ' + (tier || 'Pro') + '.\n' +
-      'Name: ' + name + '\nEmail: ' + email + '\n' +
-      'Tell me the next step to subscribe.'
-    );
-    var link = 'mailto:zanabalmuhamed@gmail.com?subject=' +
-      encodeURIComponent('ProfitPulse ' + (tier || 'Pro') + ' request') +
-      '&body=' + body;
-    // Try to open the mail client; also record intent locally for analytics.
-    document.location.href = link;
-    try { localStorage.setItem('pp_lead_' + Date.now(), JSON.stringify({ tier: tier, email: email, name: name, ts: Date.now() })); } catch (e) {}
-    var msg = $('lead-msg');
-    if (msg) { msg.textContent = 'Request started. We will send your ' + (tier || 'Pro') + ' activation link shortly.'; msg.style.display = 'block'; }
+    // Pro/Team are subscribed through the PayPal buttons rendered in the cards.
+    var el = $('pricing');
+    if (el && el.scrollIntoView) el.scrollIntoView({ behavior: 'smooth' });
     return true;
   };
 
