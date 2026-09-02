@@ -187,6 +187,7 @@
 <footer>
   <p>ProfitPulse · a micro-tool by the WinAgent Income Orchestrator · <a href="pricing-audit.html">pricing audit</a> · ver. 1.1</p>
 </footer>
+<script src="funnel.js"></script>
 <script src="app.js"></script>
 <script src="dom.js"></script>
 <script src="paypal-config.js"></script>
@@ -208,6 +209,17 @@
       window.ppSubscribe.renderAll(['pro', 'team']);
       modeNote();
     });
+  })();
+</script>
+
+<script>
+  (function () {
+    function track(name, data) { if (window.PPFunnel) window.PPFunnel.track(name, data); }
+    try { track('tool_page_view', { ref: document.referrer || '' }); } catch (e) {}
+    var ue = document.getElementById('ue-form');
+    if (ue) ue.addEventListener('submit', function () { track('ue_compute', {}); });
+    var pq = document.getElementById('pq-form');
+    if (pq) pq.addEventListener('submit', function () { track('pq_compute', {}); });
   })();
 </script>
 </body>

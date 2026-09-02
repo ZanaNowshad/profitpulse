@@ -33,10 +33,37 @@
   <h1>Done-For-You Pricing &amp; Unit Economics Audit</h1>
   <p class="sub">Know your numbers cold. One productized audit — <strong>$250 fixed fee</strong> — turns your cost, price, churn and acquisition data into the gross margin, breakeven, LTV:CAC and pricing decisions that actually move revenue.</p>
   <div class="cta">
-    <a href="mailto:zanabal.nowshad@icloud.com?subject=ProfitPulse%20Audit%20Request&body=Company%3A%0APrice%20per%20unit%3A%0AMonthly%20customers%3A%0AMonthly%20fixed%20cost%3A%0APayment%20preference%3A%20(invoice%20%2F%20bank%20transfer%20%2F%20PayPal.Me)" class="btn">Request the $250 audit →</a>
+    <a href="#capture" class="btn">Request the $250 audit →</a>
     <a href="#whats-included" class="btn ghost">What's included</a>
   </div>
   <p class="muted" style="margin-top:18px;">Pay by invoice + bank transfer (or PayPal.Me). No live subscription gateway required.</p>
+</section>
+
+<section id="capture" class="panel accent">
+  <h2>Request the audit — get a recommendation + pro-forma invoice</h2>
+  <p class="muted">Tell us a little about your business. We'll reply within 24 hours with a recommendation, a fixed scope and a pro-forma invoice. No obligation.</p>
+  <form id="audit-lead-form" class="form" novalidate>
+    <label>Your name
+      <input type="text" id="lead-name" required placeholder="Jane Smith" />
+    </label>
+    <label>Work email
+      <input type="email" id="lead-email" required placeholder="jane@yourcompany.com" />
+    </label>
+    <label>Company / product
+      <input type="text" id="lead-company" placeholder="Acme SaaS" />
+    </label>
+    <label>Current price per unit ($)
+      <input type="number" id="lead-price" min="0" step="0.01" placeholder="49" />
+    </label>
+    <label>Service tier
+      <select id="lead-tier">
+        <option value="250">Audit — $250</option>
+        <option value="499">Audit + Implementation — $499</option>
+      </select>
+    </label>
+    <button type="submit" class="btn">Send my audit request →</button>
+    <p id="audit-msg" class="muted" style="display:none;"></p>
+  </form>
 </section>
 
 <section id="whats-included" class="panel">
@@ -60,7 +87,7 @@
         <li>Pricing &amp; packaging recommendations</li>
         <li>Written audit (3–5 business days)</li>
       </ul>
-      <a href="mailto:zanabal.nowshad@icloud.com?subject=ProfitPulse%20Audit%20($250)&body=Payment%20preference%3A%20(invoice%20%2F%20bank%20transfer%20%2F%20PayPal.Me)%0ACompany%3A%0APrice%20per%20unit%3A%0AWant%20implementation%20upgrade%3F%20(yes%2Fno)" class="btn">Start the audit</a>
+      <a href="#capture" class="btn">Start the audit</a>
     </div>
     <div class="card">
       <h3>Audit + Implementation</h3>
@@ -70,7 +97,7 @@
         <li>Billing-engine &amp; CRM blueprint</li>
         <li>Recorded walkthrough call</li>
       </ul>
-      <a href="mailto:zanabal.nowshad@icloud.com?subject=ProfitPulse%20Audit%20%2B%20Implementation%20($499)&body=Payment%20preference%3A%20(invoice%20%2F%20bank%20transfer%20%2F%20PayPal.Me)%0ACompany%3A%0APrice%20per%20unit%3A%0A" class="btn">Choose this</a>
+      <a href="#capture" class="btn">Choose this</a>
     </div>
   </div>
 </section>
@@ -95,5 +122,76 @@
 <footer>
   <p>ProfitPulse · Done-For-You Pricing &amp; Unit Economics Audit · <a href="index.html">Back to calculator</a></p>
 </footer>
+<script src="funnel.js"></script>
+<script>
+  (function () {
+    var EMAIL = 'zanabal.nowshad@icloud.com';
+
+    function track(event, data) {
+      if (window.PPFunnel) window.PPFunnel.track(event, data);
+    }
+
+    // Track page view + outbound CTA intent on load.
+    try { track('audit_page_view', { ref: document.referrer || '' }); } catch (e) {}
+    document.addEventListener('click', function (ev) {
+      var a = ev.target && ev.target.closest ? ev.target.closest('a') : null;
+      if (a && a.href && a.href.indexOf('mailto:') === 0) {
+        track('audit_cta_click', { href: a.getAttribute('href') });
+      }
+    });
+
+    var form = document.getElementById('audit-lead-form');
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var name = (document.getElementById('lead-name').value || '').trim();
+        var email = (document.getElementById('lead-email').value || '').trim();
+        var company = (document.getElementById('lead-company').value || '').trim();
+        var price = (document.getElementById('lead-price').value || '').trim();
+        var tier = document.getElementById('lead-tier').value;
+        var msg = document.getElementById('audit-msg');
+
+        if (!name || !email || email.indexOf('@') < 1) {
+          if (msg) { msg.style.display = 'block'; msg.style.color = '#f87171'; msg.textContent = 'Please provide your name and a valid work email.'; }
+          return;
+        }
+
+        track('audit_lead_submit', { name: name, email: email, company: company, price: price, tier: tier });
+
+        var subject = 'ProfitPulse Audit Request (' + (tier === '499' ? 'Audit + Implementation' : 'Audit') + ')';
+        var body = 'Name: ' + name + '\n' +
+                   'Email: ' + email + '\n' +
+                   'Company: ' + (company || 'n/a') + '\n' +
+                   'Price per unit: ' + (price || 'n/a') + '\n' +
+                   'Tier: ' + (tier === '499' ? 'Audit + Implementation ($499)' : 'Audit ($250)') + '\n' +
+                   'Payment preference: (invoice / bank transfer / PayPal.Me)';
+        var href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+
+        if (msg) {
+          msg.style.display = 'block';
+          msg.style.color = '#4ade80';
+          msg.innerHTML = '✅ Thanks! Your browser has logged this request. Click below to open your email client so it sends to us.';
+        }
+
+        // Show a "send email" confirmation button once the lead is logged.
+        var sendBtn = document.getElementById('audit-send');
+        if (!sendBtn) {
+          sendBtn = document.createElement('a');
+          sendBtn.id = 'audit-send';
+          sendBtn.className = 'btn';
+          sendBtn.textContent = 'Open email to send request →';
+          sendBtn.href = href;
+          form.appendChild(sendBtn);
+        } else {
+          sendBtn.href = href;
+          sendBtn.style.display = 'inline-block';
+        }
+        sendBtn.addEventListener('click', function () {
+          track('audit_lead_email_open', { email: email, tier: tier });
+        });
+      });
+    }
+  })();
+</script>
 </body>
 </html>
