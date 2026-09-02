@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gross Margin Calculator — Free SaaS &amp; Small Business Margin Tool | ProfitPulse</title>
+<meta name="description" content="Free gross margin calculator for SaaS founders and small business owners. Compute gross margin per unit, gross margin rate and breakeven customers from price and variable cost. 100% client-side, no sign-up." />
+<meta name="keywords" content="gross margin calculator, gross margin calculator SaaS, contribution margin calculator, SaaS margin tool, gross profit margin calculator" />
+<link rel="canonical" href="https://zananowshad.github.io/profitpulse/gross-margin-calculator.html" />
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="ProfitPulse" />
+<meta property="og:title" content="Gross Margin Calculator — Free SaaS &amp; Small Business Margin Tool | ProfitPulse" />
+<meta property="og:description" content="Free gross margin calculator for SaaS founders and small business owners. Compute gross margin per unit, gross margin rate and breakeven in seconds. 100% client-side, no sign-up." />
+<meta property="og:url" content="https://zananowshad.github.io/profitpulse/gross-margin-calculator.html" />
+<meta property="og:image" content="https://zananowshad.github.io/profitpulse/og.png" />
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Gross Margin Calculator — Free SaaS &amp; Small Business Margin Tool | ProfitPulse" />
+<meta name="twitter:description" content="Free gross margin calculator for SaaS founders and small business owners. Compute gross margin per unit, gross margin rate and breakeven in seconds. 100% client-side, no sign-up." />
+<meta name="twitter:image" content="https://zananowshad.github.io/profitpulse/og.png" />
+<link rel="stylesheet" href="style.css" />
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is a good gross margin for SaaS?", "acceptedAnswer": {"@type": "Answer", "text": "Software gross margins are typically 70\u201390%. If you are below 70%, review your cost structure or pricing before scaling acquisition."}}, {"@type": "Question", "name": "How do you calculate gross margin per unit?", "acceptedAnswer": {"@type": "Answer", "text": "Gross margin per unit equals price minus variable cost. Divide by price (then multiply by 100) to get the gross margin rate percentage."}}, {"@type": "Question", "name": "What is the difference between gross margin and contribution margin?", "acceptedAnswer": {"@type": "Answer", "text": "Gross margin is revenue minus variable cost of goods. Contribution margin subtracts additional variable acquisition costs like CAC, showing what each sale actually contributes toward fixed costs and profit."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "ProfitPulse", "applicationCategory": "BusinessApplication", "operatingSystem": "Any (browser)", "browserRequirements": "Requires JavaScript", "description": "Free gross margin calculator: compute gross margin per unit, gross margin rate and breakeven customers.", "url": "https://zananowshad.github.io/profitpulse/gross-margin-calculator.html", "offers": {"@type": "AggregateOffer", "lowPrice": "0", "highPrice": "29", "priceCurrency": "USD", "offerCount": "3"}}</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">⚡ ProfitPulse</div>
+  <nav>
+    <a href="index.html#calc" class="btn small">Open Calculator</a>
+    <a href="index.html#pricing" class="btn small ghost">Pricing</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Gross Margin Calculator</h1>
+  <p class="sub">Enter your price and variable cost — ProfitPulse computes gross margin per unit, gross margin rate and how many customers you need to break even. Fast, private, in your browser.</p>
+  <div class="cta">
+    <a href="#calc" class="btn">Run the calculator →</a>
+    <a href="index.html#pricing" class="btn ghost">See Pro plans</a>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>Learn: what your numbers mean</h2>
+  <p>New to unit economics? Read our free <a href="unit-economics-calculator.html">unit economics guide</a> for SaaS founders before you run the numbers.</p>
+</section>
+
+<section id="calc" class="panel">
+  <h2>Gross Margin Calculator</h2>
+  <p class="muted">Everything runs locally in your browser. No data leaves your device.</p>
+  <div class="grid">
+    <form id="ue-form" class="form">
+      <label>Price / unit ($)
+        <input type="number" id="price" min="0" step="0.01" value="49" />
+      </label>
+      <label>Variable cost / unit ($)
+        <input type="number" id="varcost" min="0" step="0.01" value="10" />
+      </label>
+      <label>Acquisition cost (CAC) ($)
+        <input type="number" id="cac" min="0" step="0.01" value="30" />
+      </label>
+      <label>Monthly fixed cost ($)
+        <input type="number" id="fixed" min="0" step="0.01" value="1200" />
+      </label>
+      <label>Active customers
+        <input type="number" id="customers" min="0" step="1" value="100" />
+      </label>
+      <label>Monthly churn rate (%)
+        <input type="number" id="churn" min="0" max="100" step="0.1" value="5" />
+      </label>
+      <button type="submit" class="btn">Compute</button>
+    </form>
+    <div id="ue-out" class="results" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="panel accent">
+  <h2>Target-Margin Pricing</h2>
+  <div class="grid">
+    <form id="pq-form" class="form">
+      <label>Unit cost ($)
+        <input type="number" id="pcost" min="0" step="0.01" value="20" />
+      </label>
+      <label>Target margin (%)
+        <input type="number" id="pmargin" min="0" max="99" step="0.1" value="70" />
+      </label>
+      <label>Quantity
+        <input type="number" id="pqty" min="1" step="1" value="1" />
+      </label>
+      <label>Discount (%)
+        <input type="number" id="pdiscount" min="0" max="100" step="0.1" value="0" />
+      </label>
+      <label>Tax (%)
+        <input type="number" id="ptax" min="0" step="0.1" value="0" />
+      </label>
+      <button type="submit" class="btn">Price it</button>
+    </form>
+    <div id="pq-out" class="results" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>Gross margin vs. contribution margin</h2>
+  <p><strong>Gross margin</strong> is revenue minus the variable cost of delivering your product. It answers:
+  does a unit cover its own production cost? For software this is very high (70\u201390%); for physical or
+  service businesses it is lower.</p>
+  <p><strong>Contribution margin</strong> goes one step further and subtracts the cost to acquire that unit
+  (CAC). A business can have excellent gross margin but still be unprofitable if acquisition is expensive.
+  ProfitPulse shows both so you never mistake one for the other.</p>
+  <h3>How to read your margin</h3>
+  <ul>
+    <li><strong>Gross margin rate &gt; 70%</strong> — strong for software; scale it.</li>
+    <li><strong>50\u201370%</strong> — workable worldwide, but review cost and pricing levers.</li>
+    <li><strong>&lt; 50%</strong> — inspect ads, hosting, support, and COGS before you invest in growth.</li>
+  </ul>
+  <div class="cta"><a href="#ue-form" class="btn">Run your gross margin →</a></div>
+</section>
+
+<section class="panel accent">
+  <h2>Compare scenarios &amp; export</h2>
+  <p>This free calculator covers the essentials. The <strong>Pro ($9/mo)</strong> plan adds side-by-side
+  scenario comparison, CSV &amp; PDF export, and saved models. The <strong>Team ($29/mo)</strong> plan adds
+  unlimited seats and priority support.</p>
+  <div class="cta"><a href="index.html#pricing" class="btn">Upgrade to Pro / Team →</a></div>
+</section>
+
+<footer>
+  <p>ProfitPulse · a micro-tool by the WinAgent Income Orchestrator · ver. 1.1</p>
+</footer>
+<script src="app.js"></script>
+<script src="dom.js"></script>
+
+</body>
+</html>
