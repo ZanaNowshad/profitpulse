@@ -79,6 +79,26 @@
   </div>
 </section>
 
+<section class="panel">
+  <h2>Why unit economics matter (and how to use this calculator)</h2>
+  <p>Before you raise a round, hire a team, or scale ads, you need to know three numbers cold:
+  <strong>gross margin per unit</strong>, <strong>contribution after CAC</strong>, and <strong>LTV:CAC</strong>.
+  Unit economics tell you whether each sale actually makes money after you pay to acquire it.</p>
+  <h3>Gross margin per unit</h3>
+  <p><code>Price − Variable cost</code>. This is what each unit earns before marketing spend. Aim for a
+  healthy rate (60–90% for software; lower for productized goods).</p>
+  <h3>Contribution after CAC</h3>
+  <p><code>(Price − Variable cost) − Acquisition cost</code>. This is the true profit per customer and the number
+  that decides whether scaling ads is profitable.</p>
+  <h3>LTV : CAC</h3>
+  <p><strong>Lifetime value ÷ acquisition cost</strong>. Below 1.5 you're probably losing money; 3+ (as shown when
+  you compute) is the gold standard for a scalable SaaS business.</p>
+  <h3>Breakeven customers</h3>
+  <p><code>Monthly fixed cost ÷ contribution per unit</code>. How many paying customers you need to cover your
+  fixed costs each month. ProfitPulse surfaces this instantly.</p>
+  <p class="muted">ProfitPulse is free to use and runs 100% in your browser — no sign-up, no data leaves your device.</p>
+</section>
+
 <section id="pricing" class="pricing">
   <h2>Pricing (freemium)</h2>
   <div class="cards">
@@ -90,7 +110,7 @@
         <li>Target-margin pricing</li>
         <li>Unlimited local use</li>
       </ul>
-      <button class="btn ghost" onclick="proNotice('Free')">Start free</button>
+      <button class="btn ghost" onclick="captureLead('Free')">Start free</button>
     </div>
     <div class="card featured">
       <h3>Pro</h3>
@@ -101,7 +121,7 @@
         <li>Export to CSV &amp; PDF</li>
         <li>Saved models &amp; templates</li>
       </ul>
-      <button class="btn" onclick="proNotice('Pro')">Upgrade</button>
+      <button class="btn" onclick="scrollToLead('Pro')">Upgrade</button>
     </div>
     <div class="card">
       <h3>Team</h3>
@@ -111,7 +131,25 @@
         <li>Unlimited seats</li>
         <li>Priority support</li>
       </ul>
-      <button class="btn ghost" onclick="proNotice('Team')">Contact</button>
+      <button class="btn ghost" onclick="scrollToLead('Team')">Contact</button>
+    </div>
+  </div>
+
+  <div class="panel accent" id="upgrade-box">
+    <h3>Upgrade to Pro / Team — your account setup</h3>
+    <p class="muted">Tell us where to send your activation link. We personally onboard every Pro and Team workspace.</p>
+    <div class="form">
+      <label>Your name
+        <input type="text" id="lead-name" placeholder="Jane Founder" />
+      </label>
+      <label>Work email
+        <input type="email" id="lead-email" placeholder="you@company.com" />
+      </label>
+      <div class="row">
+        <button type="button" class="btn" onclick="captureLead('Pro')">Request Pro ($9/mo)</button>
+        <button type="button" class="btn ghost" onclick="captureLead('Team')">Request Team ($29/mo)</button>
+      </div>
+      <p class="muted" id="lead-msg" style="display:none; color:#2ecc71;"></p>
     </div>
   </div>
 </section>
@@ -119,6 +157,9 @@
 <footer>
   <p>ProfitPulse · a micro-tool by the WinAgent Income Orchestrator · ver. 1.0</p>
 </footer>
+<script>
+  function scrollToLead(tier) { var el = document.getElementById('upgrade-box'); if (el) el.scrollIntoView({ behavior:'smooth' }); }
+</script>
 <script src="app.js"></script>
 <script src="dom.js"></script>
 </body>
