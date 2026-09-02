@@ -10,3 +10,6 @@ test_paypal_*.py
 # OS / editor noise
 Thumbs.db
 .DS_Store
+
+# Debug screenshots (2026-09-02)
+live_gross_margin.png
