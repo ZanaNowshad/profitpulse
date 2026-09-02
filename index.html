@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ProfitPulse — Unit Economics & Pricing Micro-Tool</title>
+<meta name="description" content="Freemium SaaS micro-tool: compute gross margin, breakeven, LTV, LTV:CAC and target-margin pricing in seconds. Runs 100% client-side." />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">⚡ ProfitPulse</div>
+  <nav>
+    <a href="#calc" class="btn small">Open Calculator</a>
+    <a href="#pricing" class="btn small ghost">Pricing</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Know your numbers before you launch.</h1>
+  <p class="sub">ProfitPulse is a freemium <strong>unit-economics &amp; pricing</strong> micro-tool for solopreneurs and SaaS builders. It turns your cost, price and churn inputs into the gross margin, breakeven, LTV and price-point decisions that actually drive revenue.</p>
+  <div class="cta">
+    <a href="#calc" class="btn">Run the calculator →</a>
+    <a href="#pricing" class="btn ghost">See Pro plans</a>
+  </div>
+</section>
+
+<section id="calc" class="panel">
+  <h2>Unit Economics Calculator</h2>
+  <p class="muted">Everything runs locally in your browser. No data leaves your device.</p>
+  <div class="grid">
+    <form id="ue-form" class="form">
+      <label>Price / unit ($)
+        <input type="number" id="price" min="0" step="0.01" value="49" />
+      </label>
+      <label>Variable cost / unit ($)
+        <input type="number" id="varcost" min="0" step="0.01" value="10" />
+      </label>
+      <label>Acquisition cost (CAC) ($)
+        <input type="number" id="cac" min="0" step="0.01" value="30" />
+      </label>
+      <label>Monthly fixed cost ($)
+        <input type="number" id="fixed" min="0" step="0.01" value="1200" />
+      </label>
+      <label>Active customers
+        <input type="number" id="customers" min="0" step="1" value="100" />
+      </label>
+      <label>Monthly churn rate (%)
+        <input type="number" id="churn" min="0" max="100" step="0.1" value="5" />
+      </label>
+      <button type="submit" class="btn">Compute</button>
+    </form>
+    <div id="ue-out" class="results" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="panel accent">
+  <h2>Target-Margin Pricing</h2>
+  <div class="grid">
+    <form id="pq-form" class="form">
+      <label>Unit cost ($)
+        <input type="number" id="pcost" min="0" step="0.01" value="20" />
+      </label>
+      <label>Target margin (%)
+        <input type="number" id="pmargin" min="0" max="99" step="0.1" value="70" />
+      </label>
+      <label>Quantity
+        <input type="number" id="pqty" min="1" step="1" value="1" />
+      </label>
+      <label>Discount (%)
+        <input type="number" id="pdiscount" min="0" max="100" step="0.1" value="0" />
+      </label>
+      <label>Tax (%)
+        <input type="number" id="ptax" min="0" step="0.1" value="0" />
+      </label>
+      <button type="submit" class="btn">Price it</button>
+    </form>
+    <div id="pq-out" class="results" aria-live="polite"></div>
+  </div>
+</section>
+
+<section id="pricing" class="pricing">
+  <h2>Pricing (freemium)</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>Free</h3>
+      <div class="amount">$0</div>
+      <ul>
+        <li>Unit economics calculator</li>
+        <li>Target-margin pricing</li>
+        <li>Unlimited local use</li>
+      </ul>
+      <button class="btn ghost" onclick="proNotice('Free')">Start free</button>
+    </div>
+    <div class="card featured">
+      <h3>Pro</h3>
+      <div class="amount">$9<span>/mo</span></div>
+      <ul>
+        <li>Everything in Free</li>
+        <li>Scenario comparison (side by side)</li>
+        <li>Export to CSV &amp; PDF</li>
+        <li>Saved models &amp; templates</li>
+      </ul>
+      <button class="btn" onclick="proNotice('Pro')">Upgrade</button>
+    </div>
+    <div class="card">
+      <h3>Team</h3>
+      <div class="amount">$29<span>/mo</span></div>
+      <ul>
+        <li>Everything in Pro</li>
+        <li>Unlimited seats</li>
+        <li>Priority support</li>
+      </ul>
+      <button class="btn ghost" onclick="proNotice('Team')">Contact</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>ProfitPulse · a micro-tool by the WinAgent Income Orchestrator · ver. 1.0</p>
+</footer>
+<script src="app.js"></script>
+<script src="dom.js"></script>
+</body>
+</html>
