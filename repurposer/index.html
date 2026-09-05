@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Content Repurposing: The 1-Article → 10-Post System for LinkedIn, X & Newsletter</title>
+  <meta name="description" content="Content repurposing: turn one article into LinkedIn, X and newsletter posts automatically. Learn the 80/20 distribution system and try the free RepurposerOne tool.">
+  <meta name="keywords" content="content repurposing, repurpose blog posts for LinkedIn, content distribution strategy, repurpose article for X, newsletter repurposing tool, content repurposing automation">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <section class="hero">
+      <span class="badge">Niche SaaS Micro-Tools · 100% client-side</span>
+      <h1><span class="logo">RepurposerOne</span> · Stop Writing 10 Posts. Repurpose One.</h1>
+      <p class="sub">Paste one article and instantly generate a LinkedIn post, an X thread, and a newsletter blurb — platform-native, not copy-paste. Free tier, no signup.</p>
+    </section>
+
+    <div class="grid">
+      <div class="panel">
+        <h2>Paste your article</h2>
+        <div class="row">
+          <div class="grow">
+            <label for="title">Title / headline</label>
+            <input id="title" placeholder="The 80/20 System for Content Repurposing">
+          </div>
+        </div>
+        <label for="article">Article body</label>
+        <textarea id="article" placeholder="Paste your article here…"></textarea>
+        <label for="brand">Brand / byline (optional)</label>
+        <input id="brand" placeholder="RepurposerOne">
+        <div class="row" style="margin-top:14px;">
+          <button class="btn" id="go">Generate platform posts</button>
+          <button class="btn secondary" id="loadSample">Load sample</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Your repurposed content</h2>
+        <div id="counts" class="muted">Run the tool to generate posts.</div>
+        <label for="linkedin">LinkedIn post</label>
+        <textarea id="linkedin" class="small" placeholder="LinkedIn copy…"></textarea>
+        <div class="row">
+          <button class="btn ghost" id="copyLinkedin">Copy</button>
+        </div>
+        <label for="xThread">X thread</label>
+        <textarea id="xThread" class="small" placeholder="Tweets separated by ---"></textarea>
+        <div class="row">
+          <button class="btn ghost" id="copyX">Copy</button>
+        </div>
+        <label for="newsletter">Newsletter blurb</label>
+        <textarea id="newsletter" class="small" placeholder="Newsletter copy…"></textarea>
+        <div class="row">
+          <button class="btn ghost" id="copyNewsletter">Copy</button>
+        </div>
+      </div>
+    </div>
+
+    <section class="pricing">
+      <div class="plan">
+        <h3>Free</h3>
+        <div class="price">$0</div>
+        <div class="per">forever</div>
+        <ul>
+          <li>3 repurposes / month</li>
+          <li>LinkedIn + X + Newsletter</li>
+          <li>Unlimited local use</li>
+          <li>No signup</li>
+        </ul>
+        <button class="btn secondary">Start free</button>
+      </div>
+      <div class="plan featured">
+        <h3>Pro</h3>
+        <div class="price">$9<span class="per">/mo</span></div>
+        <div class="per">most popular</div>
+        <ul>
+          <li>Unlimited repurposes</li>
+          <li>Brand voice memory</li>
+          <li>Batch + CSV export</li>
+          <li>Content calendar</li>
+          <li>Priority support</li>
+        </ul>
+        <div id="rp-msg" style="display:none;"></div>
+        <div id="paypal-pro-button"></div>
+      </div>
+      <div class="plan">
+        <h3>Team</h3>
+        <div class="price">$29<span class="per">/mo</span></div>
+        <div class="per">per workspace</div>
+        <ul>
+          <li>Unlimited seats</li>
+          <li>Shared brand voices</li>
+          <li>Approval workflow</li>
+          <li>API access</li>
+          <li>SSO</li>
+        </ul>
+        <button class="btn secondary">Contact sales</button>
+      </div>
+    </section>
+
+    <section class="faq">
+      <h3>Why repurpose instead of rewrite?</h3>
+      <p class="muted">Writing ten original posts for ten channels is unsustainable. The 80/20 content system writes one strong piece and adapts it platform-native — so you publish consistently without burnout.</p>
+      <h3>Is my content stored?</h3>
+      <p class="muted">No. RepurposerOne runs entirely in your browser. Your article never leaves your device — nothing is uploaded or stored.</p>
+      <h3>How does the Pro tier work?</h3>
+      <p class="muted">Free gives you 3 repurposes a month. Pro unlocks unlimited repurposes, brand voice, batch export and a content calendar — $9/mo, billed securely by PayPal at checkout.</p>
+    </section>
+
+    <footer>
+      <p>RepurposerOne · 1-Article→10-Post content system · 100% client-side</p>
+    </footer>
+  </div>
+  <script src="app.js"></script>
+  <script src="dom.js"></script>
+  <script src="paypal-config.js"></script>
+  <script src="paypal-subscribe.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      try {
+        if (window.rpSubscribe && window.rpSubscribe.renderPro) {
+          window.rpSubscribe.renderPro('paypal-pro-button').catch(function (e) {
+            if (window.console) console.error('RepurposerOne Pro button failed: ' + e);
+          });
+        }
+      } catch (e) {
+        if (window.console) console.error('RepurposerOne init error: ' + e);
+      }
+    });
+  </script>
+</body>
+</html>
